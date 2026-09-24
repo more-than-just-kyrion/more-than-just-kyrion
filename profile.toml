@@ -1,45 +1,52 @@
 # Single source of truth for the README, the header SVG and the Pages site.
 # Edit this, then run:  python tools/build.py
-#
-# Anything in [brackets] is a placeholder waiting for the real thing.
 
-handle = "more-than-just-kyrion"                    # your GitHub username (the repo must share it)
+handle = "more-than-just-kyrion"       # GitHub username (the repo must share it)
 tagline = "friendly, probably."
-status = "[currently building / breaking / learning something]"
+status = "building an agentic linux desktop."
 
 about = """
-[Two or three sentences about who you are. Keep it a little cryptic -- the
-avatar does the talking. What you build, what you break, what you're curious about.]
+showed up out of nowhere. the first thing i touched on github was someone
+else's broken installer -- fixed it in about an hour, and the original dev
+came back to merge it.
 
-[Optional second paragraph: how you got here, or what you're chasing next.]
+security has been non-negotiable for me since late primary school.
+the details stay private. that's the point.
+
+linux, old games, and anything that looks locked. the rest stays private
+until it doesn't.
 """
 
 now = [
-  "[a thing you're working on]",
-  "[a thing you're learning]",
-  "[a thing you're reading / listening to]",
+  "building nanoborealis",
+  "keeping old versions playable",
+  "[redacted]",
 ]
 
-interests = ["security", "systems", "tooling", "ascii-art"]
+interests = ["security", "linux", "reversing", "game-preservation"]
 
 [stack]
-languages = ["[python]", "[rust]", "[typescript]"]
-tools = ["[linux]", "[neovim]", "[docker]"]
+languages = ["python", "c#"]
+home = ["fedora atomic", "kde plasma"]
 
 [[projects]]
-name = "[project-one]"
-url = "https://github.com/more-than-just-kyrion/[project-one]"
-desc = "[one line on what it does]"
+name = "nanoborealis"
+url = "https://github.com/more-than-just-kyrion/nanoborealis"
+desc = "an agentic linux desktop. free models, your own hardware."
 
 [[projects]]
-name = "[project-two]"
-url = "https://github.com/more-than-just-kyrion/[project-two]"
-desc = "[one line on what it does]"
+name = "NMSLegacyVersionInstaller"
+url = "https://github.com/more-than-just-kyrion/NMSLegacyVersionInstaller"
+desc = "older no man's sky builds, for legit steam owners. fixed in an hour, merged upstream."
+
+[[projects]]
+name = "vitasink"
+desc = "[redacted]"
+
+[[projects]]
+name = "watchbridge"
+desc = "[redacted]"
 
 [[contact]]
 label = "github"
 url = "https://github.com/more-than-just-kyrion"
-
-[[contact]]
-label = "[site / mastodon / email]"
-url = "[https://...]"

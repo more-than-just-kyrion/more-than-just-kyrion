@@ -6,32 +6,36 @@
 
 ### `$ cat about.md`
 
-[Two or three sentences about who you are. Keep it a little cryptic -- the avatar does the talking. What you build, what you break, what you're curious about.]
+showed up out of nowhere. the first thing i touched on github was someone else's broken installer -- fixed it in about an hour, and the original dev came back to merge it.
 
-[Optional second paragraph: how you got here, or what you're chasing next.]
+security has been non-negotiable for me since late primary school. the details stay private. that's the point.
+
+linux, old games, and anything that looks locked. the rest stays private until it doesn't.
 
 ### `$ tail now.log`
 
-- [a thing you're working on]
-- [a thing you're learning]
-- [a thing you're reading / listening to]
+- building nanoborealis
+- keeping old versions playable
+- [redacted]
 
 ### `$ ls ~/stack`
 
 ```text
-languages  [python]  [rust]  [typescript]
-tools      [linux]  [neovim]  [docker]
+languages  python  c#
+home       fedora atomic  kde plasma
 ```
 
 ### `$ ls ~/projects`
 
 | | |
 |---|---|
-| [`[project-one]`](https://github.com/more-than-just-kyrion/[project-one]) | [one line on what it does] |
-| [`[project-two]`](https://github.com/more-than-just-kyrion/[project-two]) | [one line on what it does] |
+| [`nanoborealis`](https://github.com/more-than-just-kyrion/nanoborealis) | an agentic linux desktop. free models, your own hardware. |
+| [`NMSLegacyVersionInstaller`](https://github.com/more-than-just-kyrion/NMSLegacyVersionInstaller) | older no man's sky builds, for legit steam owners. fixed in an hour, merged upstream. |
+| `vitasink` | `[redacted]` |
+| `watchbridge` | `[redacted]` |
 
 ### `$ ./contact`
 
-[github](https://github.com/more-than-just-kyrion) · [[site / mastodon / email]]([https://...])
+[github](https://github.com/more-than-just-kyrion)
 
 <sub>header &amp; avatar are generated from ASCII by <a href="tools/"><code>tools/</code></a> — no pixels were drawn by hand.</sub>

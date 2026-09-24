@@ -222,7 +222,8 @@ def build_readme():
         "",
         "| | |",
         "|---|---|",
-        *[f"| [`{p['name']}`]({p['url']}) | {p['desc']} |" for p in P["projects"]],
+        *[f"| [`{p['name']}`]({p['url']}) | {p['desc']} |" if p.get("url") else f"| `{p['name']}` | `{p['desc']}` |"
+          for p in P["projects"]],
         "",
         "### `$ ./contact`",
         "",
@@ -246,7 +247,8 @@ def build_site():
     stack = "<dl>" + "".join(
         f"<dt>{esc(k)}</dt><dd>{'  '.join(esc(t) for t in v)}</dd>" for k, v in P["stack"].items()) + "</dl>"
     projects = "<ul class=\"proj\">" + "".join(
-        f'<li><a href="{esc(p["url"])}">{esc(p["name"])}</a><span>{esc(p["desc"])}</span></li>'
+        (f'<li><a href="{esc(p["url"])}">{esc(p["name"])}</a><span>{esc(p["desc"])}</span></li>' if p.get("url")
+         else f'<li class="x"><span class="n">{esc(p["name"])}</span><span>{esc(p["desc"])}</span></li>')
         for p in P["projects"]) + "</ul>"
     contact = '<p class="links">' + "".join(
         f'<a href="{esc(c["url"])}">{esc(c["label"])}</a>' for c in P["contact"]) + "</p>"
@@ -290,6 +292,7 @@ def build_site():
   dd {{ margin: 0; white-space: pre-wrap; color: var(--violet); }}
   .proj li {{ display: flex; flex-wrap: wrap; gap: 0 14px; }}
   .proj span {{ color: var(--dim); }}
+  .proj .x .n {{ color: var(--violet); }}
   a {{ color: var(--cyan); text-decoration: none; border-bottom: 1px dotted currentColor; }}
   a:hover, a:focus-visible {{ color: var(--bg); background: var(--cyan); outline: none; }}
   .links {{ display: flex; flex-wrap: wrap; gap: 8px 20px; }}
