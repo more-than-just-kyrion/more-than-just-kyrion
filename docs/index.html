@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>more-than-just-kyrion · whoami</title>
+<meta name="description" content="friendly, probably.">
+<meta property="og:title" content="more-than-just-kyrion">
+<meta property="og:description" content="friendly, probably.">
+<meta property="og:image" content="assets/avatar.png">
+<link rel="icon" href="assets/avatar.png">
+<style>
+  :root {
+    --bg: #06070c; --panel: #0a0d14; --line: #1a1f2c;
+    --text: #b9b4d0; --dim: #5d5a78; --amber: #e1b469;
+    --green: #69cd8c; --cyan: #69d7c8; --magenta: #c85fa0; --violet: #8a80b8;
+    --mono: ui-monospace, "Cascadia Code", "JetBrains Mono", Consolas, Menlo, "DejaVu Sans Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); color-scheme: dark; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.7 var(--mono); }
+  body::after { content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(transparent 0 2px, rgba(0,0,0,.14) 2px 3px); }
+  main { max-width: 880px; margin: 0 auto; padding: 32px 16px 64px; }
+  header img { width: 100%; height: auto; display: block; }
+  .tag { text-align: center; color: var(--dim); margin: 14px auto 8px; max-width: none; }
+  .tag code { color: var(--violet); }
+  section { border-top: 1px solid var(--line); padding: 22px 0 6px; }
+  h2 { font-size: 15px; font-weight: 600; margin: 0 0 12px; color: var(--green); }
+  h2 .p { color: var(--amber); }
+  p { margin: 0 0 12px; max-width: 70ch; }
+  ul { margin: 0 0 12px; padding: 0; list-style: none; }
+  li { padding-left: 1.6em; position: relative; }
+  li::before { content: ">"; position: absolute; left: 0; color: var(--dim); }
+  dl { display: grid; grid-template-columns: 11ch 1fr; gap: 2px 12px; margin: 0 0 12px; }
+  dt { color: var(--dim); }
+  dd { margin: 0; white-space: pre-wrap; color: var(--violet); }
+  .proj li { display: flex; flex-wrap: wrap; gap: 0 14px; }
+  .proj span { color: var(--dim); }
+  a { color: var(--cyan); text-decoration: none; border-bottom: 1px dotted currentColor; }
+  a:hover, a:focus-visible { color: var(--bg); background: var(--cyan); outline: none; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+  footer { border-top: 1px solid var(--line); margin-top: 16px; padding-top: 18px; color: var(--dim); font-size: 13px; }
+  .cur { display: inline-block; width: .6em; height: 1.05em; vertical-align: text-bottom; background: var(--green);
+    animation: cur 1.1s steps(1) infinite; }
+  @keyframes cur { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .cur { animation: none; } }
+  @media (max-width: 560px) { body { font-size: 14px; } dl { grid-template-columns: 1fr; } dd { margin-bottom: 8px; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="assets/header.svg" width="1000" height="440" alt="ASCII-art hooded figure with glowing eyes beside a terminal: whoami → more-than-just-kyrion">
+    <p class="tag"><code>friendly, probably.</code></p>
+  </header>
+  <section><h2><span class="p">$</span> cat about.md</h2><p>[Two or three sentences about who you are. Keep it a little cryptic -- the avatar does the talking. What you build, what you break, what you&#x27;re curious about.]</p><p>[Optional second paragraph: how you got here, or what you&#x27;re chasing next.]</p></section>
+  <section><h2><span class="p">$</span> tail now.log</h2><ul><li>[a thing you&#x27;re working on]</li><li>[a thing you&#x27;re learning]</li><li>[a thing you&#x27;re reading / listening to]</li></ul></section>
+  <section><h2><span class="p">$</span> ls ~/stack</h2><dl><dt>languages</dt><dd>[python]  [rust]  [typescript]</dd><dt>tools</dt><dd>[linux]  [neovim]  [docker]</dd></dl></section>
+  <section><h2><span class="p">$</span> ls ~/projects</h2><ul class="proj"><li><a href="https://github.com/more-than-just-kyrion/[project-one]">[project-one]</a><span>[one line on what it does]</span></li><li><a href="https://github.com/more-than-just-kyrion/[project-two]">[project-two]</a><span>[one line on what it does]</span></li></ul></section>
+  <section><h2><span class="p">$</span> ./contact</h2><p class="links"><a href="https://github.com/more-than-just-kyrion">github</a><a href="[https://...]">[site / mastodon / email]</a></p></section>
+  <footer><span class="p" style="color:var(--amber)">$</span> <span class="cur" aria-hidden="true"></span>
+    <p style="margin-top:10px">built from ASCII · <a href="https://github.com/more-than-just-kyrion/more-than-just-kyrion">source</a></p></footer>
+</main>
+</body>
+</html>

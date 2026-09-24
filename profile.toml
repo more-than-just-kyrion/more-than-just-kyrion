@@ -1,0 +1,45 @@
+# Single source of truth for the README, the header SVG and the Pages site.
+# Edit this, then run:  python tools/build.py
+#
+# Anything in [brackets] is a placeholder waiting for the real thing.
+
+handle = "more-than-just-kyrion"                    # your GitHub username (the repo must share it)
+tagline = "friendly, probably."
+status = "[currently building / breaking / learning something]"
+
+about = """
+[Two or three sentences about who you are. Keep it a little cryptic -- the
+avatar does the talking. What you build, what you break, what you're curious about.]
+
+[Optional second paragraph: how you got here, or what you're chasing next.]
+"""
+
+now = [
+  "[a thing you're working on]",
+  "[a thing you're learning]",
+  "[a thing you're reading / listening to]",
+]
+
+interests = ["security", "systems", "tooling", "ascii-art"]
+
+[stack]
+languages = ["[python]", "[rust]", "[typescript]"]
+tools = ["[linux]", "[neovim]", "[docker]"]
+
+[[projects]]
+name = "[project-one]"
+url = "https://github.com/more-than-just-kyrion/[project-one]"
+desc = "[one line on what it does]"
+
+[[projects]]
+name = "[project-two]"
+url = "https://github.com/more-than-just-kyrion/[project-two]"
+desc = "[one line on what it does]"
+
+[[contact]]
+label = "github"
+url = "https://github.com/more-than-just-kyrion"
+
+[[contact]]
+label = "[site / mastodon / email]"
+url = "[https://...]"
