@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- reading the source. good instinct. -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -38,6 +39,9 @@
   .proj li { display: flex; flex-wrap: wrap; gap: 0 14px; }
   .proj span { color: var(--dim); }
   .proj .x .n { color: var(--violet); }
+  .tx { margin: 0 0 12px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; overflow-x: auto; font: inherit; font-size: 14px; line-height: 1.65; color: var(--text); }
+  .tx .p { color: var(--amber); } .tx .c { color: var(--green); } .tx .d { color: var(--dim); }
   a { color: var(--cyan); text-decoration: none; border-bottom: 1px dotted currentColor; }
   a:hover, a:focus-visible { color: var(--bg); background: var(--cyan); outline: none; }
   .links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
@@ -55,10 +59,26 @@
     <img src="assets/header.svg" width="1000" height="440" alt="ASCII-art hooded figure with glowing eyes beside a terminal: whoami → more-than-just-kyrion">
     <p class="tag"><code>friendly, probably.</code></p>
   </header>
-  <section><h2><span class="p">$</span> cat about.md</h2><p>showed up out of nowhere. the first thing i touched on github was someone else&#x27;s broken installer -- fixed it in about an hour, and the original dev came back to merge it.</p><p>security has been non-negotiable for me since late primary school. the details stay private. that&#x27;s the point.</p><p>linux, old games, and anything that looks locked. the rest stays private until it doesn&#x27;t.</p></section>
-  <section><h2><span class="p">$</span> tail now.log</h2><ul><li>building nanoborealis</li><li>keeping old versions playable</li><li>[redacted]</li></ul></section>
+  <section><h2><span class="p">$</span> cat about.md</h2><p>showed up out of nowhere and fixed a stranger&#x27;s broken installer in about an hour. the original dev came back to merge it. that&#x27;s usually where the questions start.</p><p>security has been non-negotiable for me since late primary school. the details stay private. that&#x27;s the point.</p><p>linux, old games, and anything that looks locked. more when it&#x27;s ready.</p></section>
+  <section><h2><span class="p">$</span> whois kyrion</h2><pre class="tx">first seen    2025-02, out of nowhere
+first move    fixed a stranger&#x27;s installer in ~1h. merged upstream.
+security      non-negotiable since late primary school
+builds        things that stay contained
+status        friendly, probably.</pre></section>
+  <section><h2><span class="p">$</span> tail now.log</h2><ul><li>nanoborealis: an agent that can&#x27;t leave its box</li><li>keeping old versions playable</li><li>[redacted]</li></ul></section>
+  <section><h2><span class="p">$</span> ls ~/projects</h2><ul class="proj"><li><a href="https://github.com/more-than-just-kyrion/nanoborealis">nanoborealis</a><span>a linux desktop with an agent living inside it. writes, runs and fixes code, borrows your gpus, and can&#x27;t reach your files or your network. by design.</span></li><li><a href="https://github.com/more-than-just-kyrion/NMSLegacyVersionInstaller">NMSLegacyVersionInstaller</a><span>older no man&#x27;s sky builds, for legit steam owners. fixed in about an hour. merged upstream.</span></li></ul></section>
+  <section><h2><span class="p">$</span> history | tail -n 6</h2><pre class="tx">  1  git clone someone-elses/broken-installer
+  2  # ~1 hour later
+  3  git push                  # merged upstream
+  4  git init nanoborealis
+  5  chmod 700 ~
+  6  ████████████████          # [redacted]</pre></section>
+  <section><h2><span class="p">$</span> ls ~/private</h2><pre class="tx">vitasink/  watchbridge/  ██████/
+<span class="p">$</span> <span class="c">cat vitasink/README</span>
+cat: vitasink/README: Permission denied
+<span class="p">$</span> <span class="c">sudo !!</span>
+nice try.</pre></section>
   <section><h2><span class="p">$</span> ls ~/stack</h2><dl><dt>languages</dt><dd>python  c#</dd><dt>home</dt><dd>fedora atomic  kde plasma</dd></dl></section>
-  <section><h2><span class="p">$</span> ls ~/projects</h2><ul class="proj"><li><a href="https://github.com/more-than-just-kyrion/nanoborealis">nanoborealis</a><span>an agentic linux desktop. free models, your own hardware.</span></li><li><a href="https://github.com/more-than-just-kyrion/NMSLegacyVersionInstaller">NMSLegacyVersionInstaller</a><span>older no man&#x27;s sky builds, for legit steam owners. fixed in an hour, merged upstream.</span></li><li class="x"><span class="n">vitasink</span><span>[redacted]</span></li><li class="x"><span class="n">watchbridge</span><span>[redacted]</span></li></ul></section>
   <section><h2><span class="p">$</span> ./contact</h2><p class="links"><a href="https://github.com/more-than-just-kyrion">github</a></p></section>
   <footer><span class="p" style="color:var(--amber)">$</span> <span class="cur" aria-hidden="true"></span>
     <p style="margin-top:10px">built from ASCII · <a href="https://github.com/more-than-just-kyrion/more-than-just-kyrion">source</a></p></footer>

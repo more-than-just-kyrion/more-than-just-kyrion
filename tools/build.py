@@ -195,40 +195,52 @@ def paragraphs(text):
     return [" ".join(p.split()) for p in text.strip().split("\n\n") if p.strip()]
 
 
+# Sections render in the order given by `order` in profile.toml. The built-in
+# ones below have their own layout; any other name is looked up in [block.*]
+# and shown as a terminal transcript (cmd + preformatted text).
+BUILTIN_CMDS = {
+    "about": "cat about.md", "now": "tail now.log", "stack": "ls ~/stack",
+    "projects": "ls ~/projects", "contact": "./contact",
+}
+DEFAULT_ORDER = ["about", "now", "stack", "projects", "contact"]
+
+
+def cmd_of(name):
+    return BUILTIN_CMDS.get(name) or P["block"][name]["cmd"]
+
+
+def block_lines(name):
+    return P["block"][name]["text"].strip("\n").splitlines()
+
+
+def readme_section(name):
+    body = {
+        "about": lambda: ["\n\n".join(paragraphs(P["about"]))],
+        "now": lambda: [f"- {n}" for n in P["now"]],
+        "stack": lambda: ["```text", *[f"{k:<11}{'  '.join(v)}" for k, v in P["stack"].items()], "```"],
+        "projects": lambda: ["| | |", "|---|---|", *[
+            f"| [`{p['name']}`]({p['url']}) | {p['desc']} |" if p.get("url") else f"| `{p['name']}` | `{p['desc']}` |"
+            for p in P["projects"]]],
+        "contact": lambda: [" · ".join(f"[{c['label']}]({c['url']})" for c in P["contact"])],
+    }.get(name, lambda: ["```text", *block_lines(name), "```"])()
+    return [f"### `$ {cmd_of(name)}`", "", *body, ""]
+
+
 def build_readme():
     h = P["handle"]
     site = f"https://{h}.github.io/{h}/"
     out = [
+        *([f"<!-- {P['secret']} -->", ""] if P.get("secret") else []),
         '<p align="center">',
         f'  <img src="assets/header.svg" width="100%" alt="ASCII-art hooded figure with glowing eyes beside a terminal: whoami → {esc(h)}">',
         "</p>",
         "",
         f'<p align="center"><code>{esc(P["tagline"])}</code> &nbsp;·&nbsp; <a href="{site}">about page ↗</a></p>',
         "",
-        "### `$ cat about.md`",
-        "",
-        *[p + "\n" for p in paragraphs(P["about"])],
-        "### `$ tail now.log`",
-        "",
-        *[f"- {n}" for n in P["now"]],
-        "",
-        "### `$ ls ~/stack`",
-        "",
-        "```text",
-        *[f"{k:<11}{'  '.join(v)}" for k, v in P["stack"].items()],
-        "```",
-        "",
-        "### `$ ls ~/projects`",
-        "",
-        "| | |",
-        "|---|---|",
-        *[f"| [`{p['name']}`]({p['url']}) | {p['desc']} |" if p.get("url") else f"| `{p['name']}` | `{p['desc']}` |"
-          for p in P["projects"]],
-        "",
-        "### `$ ./contact`",
-        "",
-        " · ".join(f"[{c['label']}]({c['url']})" for c in P["contact"]),
-        "",
+    ]
+    for name in P.get("order", DEFAULT_ORDER):
+        out += readme_section(name)
+    out += [
         "<sub>header &amp; avatar are generated from ASCII by <a href=\"tools/\"><code>tools/</code></a> — no pixels were drawn by hand.</sub>",
         "",
     ]
@@ -253,8 +265,24 @@ def build_site():
     contact = '<p class="links">' + "".join(
         f'<a href="{esc(c["url"])}">{esc(c["label"])}</a>' for c in P["contact"]) + "</p>"
 
+    def transcript(name):
+        rows = []
+        for ln in block_lines(name):
+            if ln.startswith("$ "):
+                rows.append(f'<span class="p">$</span> <span class="c">{esc(ln[2:])}</span>')
+            elif ln.lstrip().startswith("#"):
+                rows.append(f'<span class="d">{esc(ln)}</span>')
+            else:
+                rows.append(esc(ln))
+        return f'<pre class="tx">{chr(10).join(rows)}</pre>'
+
+    built = {"about": about, "now": now, "stack": stack, "projects": projects, "contact": contact}
+    sections = "\n  ".join(
+        section(esc(cmd_of(n)), built[n] if n in built else transcript(n)) for n in P.get("order", DEFAULT_ORDER))
+    secret = f"<!-- {esc(P['secret'])} -->\n" if P.get("secret") else ""
+
     page = f'''<!doctype html>
-<html lang="en">
+{secret}<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -293,6 +321,9 @@ def build_site():
   .proj li {{ display: flex; flex-wrap: wrap; gap: 0 14px; }}
   .proj span {{ color: var(--dim); }}
   .proj .x .n {{ color: var(--violet); }}
+  .tx {{ margin: 0 0 12px; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: 8px; overflow-x: auto; font: inherit; font-size: 14px; line-height: 1.65; color: var(--text); }}
+  .tx .p {{ color: var(--amber); }} .tx .c {{ color: var(--green); }} .tx .d {{ color: var(--dim); }}
   a {{ color: var(--cyan); text-decoration: none; border-bottom: 1px dotted currentColor; }}
   a:hover, a:focus-visible {{ color: var(--bg); background: var(--cyan); outline: none; }}
   .links {{ display: flex; flex-wrap: wrap; gap: 8px 20px; }}
@@ -310,11 +341,7 @@ def build_site():
     <img src="assets/header.svg" width="1000" height="440" alt="ASCII-art hooded figure with glowing eyes beside a terminal: whoami → {h}">
     <p class="tag"><code>{esc(P["tagline"])}</code></p>
   </header>
-  {section("cat about.md", about)}
-  {section("tail now.log", now)}
-  {section("ls ~/stack", stack)}
-  {section("ls ~/projects", projects)}
-  {section("./contact", contact)}
+  {sections}
   <footer><span class="p" style="color:var(--amber)">$</span> <span class="cur" aria-hidden="true"></span>
     <p style="margin-top:10px">built from ASCII · <a href="https://github.com/{h}/{h}">source</a></p></footer>
 </main>
